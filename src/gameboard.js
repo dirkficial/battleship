@@ -1,6 +1,6 @@
 import Ship from "./ship.js";
 
-class Gameboard {
+export default class Gameboard {
     constructor() {
         this.board = [];
         for (let i = 0; i < 100; i++) {
@@ -48,7 +48,7 @@ class Gameboard {
         if (this.board[coordinate].isHit === true) {
             return false;
         }
-        
+
         if (coordinate < 100 && coordinate >= 0) {
             if (this.board[coordinate].hasShip) {
                 this.board[coordinate].ship.hit();
