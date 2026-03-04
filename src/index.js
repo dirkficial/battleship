@@ -1,2 +1,4 @@
 import './styles/main.scss';
-import './gameController.js';
+import startGame from './gameController.js';
+
+startGame();

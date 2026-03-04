@@ -43,8 +43,7 @@ export default class Gameboard {
         })
     }
 
-    receiveAttack(x, y) {
-        const coordinate = y*10 + x;
+    receiveAttack(coordinate) {
         if (this.board[coordinate].isHit === true) {
             return false;
         }
@@ -52,6 +51,9 @@ export default class Gameboard {
         if (coordinate < 100 && coordinate >= 0) {
             if (this.board[coordinate].hasShip) {
                 this.board[coordinate].ship.hit();
+                this.board[coordinate].isHit = true;
+            }
+            else {
                 this.board[coordinate].isHit = true;
             }
         } 

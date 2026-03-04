@@ -1,17 +1,43 @@
 import Player from "./player.js";
 import { renderBoard } from "./ui.js";
 
-const player = new Player('real');
-const comp = new Player('computer');
+export default function startGame() {
 
-renderBoard(player.gameboard, "player-board")
-renderBoard(comp.gameboard, "computer-board")
+    const player = new Player('real');
+    const comp = new Player('computer');
 
-player.gameboard.placeShip(2, 1, false);
-player.gameboard.placeShip(3, 5, false);
-player.gameboard.placeShip(3, 12, false);
-player.gameboard.placeShip(4, 24, false);
-player.gameboard.placeShip(5, 52, false);
+    player.gameboard.placeShip(2, 1, false);
+    player.gameboard.placeShip(3, 5, false);
+    player.gameboard.placeShip(3, 12, false);
+    player.gameboard.placeShip(4, 24, false);
+    player.gameboard.placeShip(5, 52, false);
 
-renderBoard(player.gameboard, "player-board")
-renderBoard(comp.gameboard, "computer-board")
+    comp.gameboard.placeShip(2, 1, false);
+    comp.gameboard.placeShip(3, 5, false);
+    comp.gameboard.placeShip(3, 12, false);
+    comp.gameboard.placeShip(4, 24, false);
+    comp.gameboard.placeShip(5, 52, false);
+
+    const playTurn = (clickedIndex) => {
+   
+        player.attackEnemy(clickedIndex, comp.gameboard);
+        renderBoard(comp.gameboard, "computer-board", playTurn);
+
+        if (comp.gameboard.isGameOver()) {
+            return;
+        }
+
+        comp.randomAttack(player.gameboard);
+
+        renderBoard(player.gameboard, "player-board", playTurn);
+        
+        if (player.gameboard.isGameOver()) {
+            return;
+        }
+    }
+
+    renderBoard(player.gameboard, "player-board", playTurn);
+    renderBoard(comp.gameboard, "computer-board", playTurn);    
+    
+}
+

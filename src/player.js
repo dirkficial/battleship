@@ -6,26 +6,23 @@ export default class Player {
         this.playerType = playerType;
     }
 
-    attackEnemy(x, y, enemyBoard) {
-        enemyBoard.receiveAttack(x, y);
+    attackEnemy(coordinate, enemyBoard) {
+        enemyBoard.receiveAttack(coordinate);
     }
 
     randomAttack(enemyBoard) {
         let isValidTarget = false;
-        let randomX;
-        let randomY;
+        let coordinate;
 
         while (isValidTarget === false) {
-            randomX = Math.floor(Math.random() * 10);
-            randomY = Math.floor(Math.random() * 10);
+            coordinate = Math.floor(Math.random() * 100);
 
-            const coordinate = randomY * 10 + randomX;
 
             if (enemyBoard.board[coordinate].isHit === false) {
                 isValidTarget = true;
             }
         }
 
-        enemyBoard.receiveAttack(randomX, randomY);
+        enemyBoard.receiveAttack(coordinate);
     }
 }
