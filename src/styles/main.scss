@@ -1,0 +1,34 @@
+div.board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    width: 400px; /* Give the board a fixed size */
+    height: 400px;
+    gap: 1px; /* Creates nice little grid lines between cells */
+    background-color: black; /* The gap lines will show through as black */
+    border: 2px solid black;
+}
+
+.cell {
+    background-color: white; 
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Makes color changes look smooth */
+
+    &:hover {
+        background-color: #e0e0e0; /* Slight highlight when the user hovers */
+    }
+
+    /* We will toggle these classes on via JavaScript later */
+    &.ship {
+        background-color: #7f8c8d; /* Dark gray for your own ships */
+    }
+
+    &.hit {
+        background-color: #e74c3c; /* Red for a successful hit */
+        cursor: not-allowed; /* Shows the user they can't click here again */
+    }
+
+    &.miss {
+        background-color: #bdc3c7; /* Light grayish-blue for a miss */
+        cursor: not-allowed;
+    }
+}
