@@ -1,3 +1,22 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+div#header {
+    position: absolute;
+    top: 5vh;
+}
+
+div#game-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5em;
+}
+
 div.board {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -15,20 +34,5 @@ div.board {
 
     &:hover {
         background-color: #e0e0e0; /* Slight highlight when the user hovers */
-    }
-
-    /* We will toggle these classes on via JavaScript later */
-    &.ship {
-        background-color: #7f8c8d; /* Dark gray for your own ships */
-    }
-
-    &.hit {
-        background-color: #e74c3c; /* Red for a successful hit */
-        cursor: not-allowed; /* Shows the user they can't click here again */
-    }
-
-    &.miss {
-        background-color: #bdc3c7; /* Light grayish-blue for a miss */
-        cursor: not-allowed;
     }
 }

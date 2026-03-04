@@ -5,4 +5,4 @@ const player = new Player('real');
 const comp = new Player('computer');
 
 renderBoard(player.gameboard, "player-board")
-renderBoard(computer.gameboard, "computer-board")
+renderBoard(comp.gameboard, "computer-board")
