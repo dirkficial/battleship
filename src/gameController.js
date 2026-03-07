@@ -20,6 +20,10 @@ export default function startGame() {
 
     const playTurn = (clickedIndex) => {
    
+        if (comp.gameboard.isGameOver() || player.gameboard.isGameOver()) {
+            return;
+        }
+
         player.attackEnemy(clickedIndex, comp.gameboard);
         renderBoard(comp.gameboard, "computer-board", playTurn);
 

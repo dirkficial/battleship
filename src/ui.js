@@ -25,6 +25,7 @@ export function renderBoard(gameboard, boardId, onCellClick) {
             }
         }
 
+        
         board.appendChild(cell); 
     }
 }

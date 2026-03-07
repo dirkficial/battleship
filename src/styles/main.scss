@@ -36,3 +36,8 @@ div.board {
         background-color: #e0e0e0; /* Slight highlight when the user hovers */
     }
 }
+
+.board.game-over {
+    pointer-events: none; 
+    opacity: 0.5; 
+}
