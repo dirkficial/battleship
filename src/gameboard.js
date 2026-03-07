@@ -45,7 +45,7 @@ export default class Gameboard {
 
     receiveAttack(coordinate) {
         if (this.board[coordinate].isHit === true) {
-            return false;
+            return;
         }
 
         if (coordinate < 100 && coordinate >= 0) {

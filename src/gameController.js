@@ -24,15 +24,18 @@ export default function startGame() {
             return;
         }
 
-        player.attackEnemy(clickedIndex, comp.gameboard);
-        renderBoard(comp.gameboard, "computer-board", playTurn);
-
+        if (comp.gameboard.board[clickedIndex].isHit === true) {
+            return;
+        } else {
+            player.attackEnemy(clickedIndex, comp.gameboard);
+            renderBoard(comp.gameboard, "computer-board", playTurn);
+        }
+        
         if (comp.gameboard.isGameOver()) {
             return;
         }
 
         comp.randomAttack(player.gameboard);
-
         renderBoard(player.gameboard, "player-board", playTurn);
         
         if (player.gameboard.isGameOver()) {
