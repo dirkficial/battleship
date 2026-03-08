@@ -26,7 +26,7 @@ export function renderBoard(gameboard, boardId, listeners = {}) {
         if (listeners.onRightClick) {
             cell.addEventListener('contextmenu', (e) => {
                 e.preventDefault();
-                listeners.onRightClick();
+                listeners.onRightClick(i);
             });
         }
 
