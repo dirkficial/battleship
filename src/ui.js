@@ -16,7 +16,7 @@ export function renderBoard(gameboard, boardId, listeners = {}) {
         }
 
         if (listeners.onLeave) {
-            cell.addEventListener('mouseleave', () => listeners.onLeave(i));
+            cell.addEventListener('mouseleave', () => listeners.onLeave());
         }
 
         if (gameboard.board[i].hasShip && boardId === "player-board") {

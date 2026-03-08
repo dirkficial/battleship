@@ -42,8 +42,10 @@ export default function startGame() {
         }
     }
 
-    const toggleVertical = () => {
+    const toggleVertical = (idx) => {
         isVertical = !isVertical;
+        handleHoverLeave();
+        handleHover(idx);
     }
 
     const handleHoverLeave = (idx) => {
@@ -66,17 +68,32 @@ export default function startGame() {
             return;
         }
 
+        let isPlacementValid = true;
+
+        if (!isVertical && (startIdx % 10) + ships[0] > 10) {
+        isPlacementValid = false;
+        }
+        
         for (const idx of indicies) {
-            
-            const cell = document.querySelector(`[data-index="${idx}"]`)
-            
             if (idx > 99 || idx < 0 || player.gameboard.board[idx].hasShip === true) {
-                return;
+                isPlacementValid = false;
+                break; 
             }
-            else {
-                cell.classList.add("hover-valid");
+        }
+
+        for (const idx of indicies) {
+            const cell = document.querySelector(`[data-index="${idx}"]`);
+            
+            if (cell) {
+                if (isPlacementValid) {
+                    cell.classList.add("hover-valid");
+                } else {
+                    cell.classList.add("hover-invalid"); 
+                }
             }
-        };
+        }
+
+
     }
 
     const handleCellClick = (idx) => {
@@ -119,9 +136,6 @@ export default function startGame() {
             }
         } 
         if (!isVertical) {
-            if ((startIdx % 10) + ships[0] > 10) {
-                    return null;
-            }
             for (let i = startIdx; i < startIdx + ships[0]; i++) {
                 indicies.push(i);
             }
