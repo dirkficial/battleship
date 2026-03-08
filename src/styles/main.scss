@@ -32,12 +32,24 @@ div.board {
     cursor: pointer;
     transition: background-color 0.2s ease; /* Makes color changes look smooth */
 
-    &:hover {
-        background-color: #e0e0e0; /* Slight highlight when the user hovers */
+    .board:not(.is-placing) &:hover {
+        background-color: #e0e0e0; 
     }
 }
 
 .board.game-over {
     pointer-events: none; 
     opacity: 0.5; 
+}
+
+/* When the hover placement is perfectly legal */
+.hover-valid {
+    background-color: rgba(46, 204, 113, 0.5); /* Semi-transparent green */
+    cursor: pointer;
+}
+
+/* When the hover goes off the board or overlaps another ship */
+.hover-invalid {
+    background-color: rgba(231, 76, 60, 0.5); /* Semi-transparent red */
+    cursor: not-allowed;
 }
