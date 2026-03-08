@@ -35,7 +35,7 @@ export default function startGame() {
         }
 
         comp.randomAttack(player.gameboard);
-        renderBoard(player.gameboard, "player-board", {onClick: playTurn});
+        renderBoard(player.gameboard, "player-board");
         
         if (player.gameboard.isGameOver()) {
             return;
@@ -120,6 +120,7 @@ export default function startGame() {
         return indicies;
     }
 
+    renderBoard(comp.gameboard, "computer-board", { onClick: playTurn });   
     renderBoard(player.gameboard, "player-board", {
     onClick: handleCellClick,
     onHover: handleHover,
