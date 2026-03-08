@@ -42,6 +42,10 @@ export default function startGame() {
         }
     }
 
+    const toggleVertical = () => {
+        isVertical = !isVertical;
+    }
+
     const handleHoverLeave = (idx) => {
         const cells = document.querySelectorAll('.cell')
 
@@ -57,6 +61,10 @@ export default function startGame() {
         }
 
         const indicies = createCoordinates(startIdx);
+
+        if (!indicies) {
+            return;
+        }
 
         for (const idx of indicies) {
             
@@ -89,7 +97,8 @@ export default function startGame() {
         renderBoard(player.gameboard, "player-board", {
             onClick: handleCellClick,
             onHover: handleHover,
-            onLeave: handleHoverLeave
+            onLeave: handleHoverLeave,
+            onRightClick: toggleVertical
         }); 
     
         if (ships.length === 0) {
@@ -111,7 +120,7 @@ export default function startGame() {
         } 
         if (!isVertical) {
             if ((startIdx % 10) + ships[0] > 10) {
-                    return false;
+                    return null;
             }
             for (let i = startIdx; i < startIdx + ships[0]; i++) {
                 indicies.push(i);
@@ -121,10 +130,12 @@ export default function startGame() {
     }
 
     renderBoard(comp.gameboard, "computer-board", { onClick: playTurn });   
+    
     renderBoard(player.gameboard, "player-board", {
     onClick: handleCellClick,
     onHover: handleHover,
-    onLeave: handleHoverLeave
+    onLeave: handleHoverLeave,
+    onRightClick: toggleVertical
     });
 
     const playerBoardDOM = document.getElementById("player-board");

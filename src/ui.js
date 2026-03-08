@@ -23,6 +23,13 @@ export function renderBoard(gameboard, boardId, listeners = {}) {
             cell.style.backgroundColor = 'blue';
         }
 
+        if (listeners.onRightClick) {
+            cell.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                listeners.onRightClick();
+            });
+        }
+
         if (gameboard.board[i].isHit) {
             if (gameboard.board[i].hasShip) {
                 cell.style.backgroundColor = 'red';
